@@ -303,6 +303,29 @@
             list-style: none;
         }
 
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--accent);
+            color: var(--primary);
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+            float: right;
+        }
+
+        .download-btn:hover {
+            background: var(--text);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(100, 255, 218, 0.3);
+        }
+
         .job-tasks li {
             padding-left: 25px;
             margin-bottom: 12px;
@@ -625,6 +648,10 @@
                         <li>Troubleshooting en oplossen van complexe netwerk- en infrastructuurproblemen</li>
                         <li>Verantwoordelijk voor dagelijks beheer van IT-infrastructuur ter ondersteuning van bedrijfsvoering</li>
                     </ul>
+                    <a href="stagePortfolioAscoo.pdf" download class="download-btn">
+                        <span>📄</span>
+                        <span>Download Portfolio</span>
+                    </a>
                 </article>
 
                 <article class="job">
@@ -652,20 +679,6 @@
                         <li>Ondersteuning IT-infrastructuur inclusief managen van printers en Microsoft Endpoint Configuration Manager</li>
                         <li>Installatie van UPS-systemen</li>
                         <li>Assistentie bij diverse IT-projecten en dagelijkse ondersteuning van de IT-afdeling</li>
-                    </ul>
-                </article>
-
-                <article class="job">
-                    <div class="job-header">
-                        <div>
-                            <h3 class="job-title">Stage Keukenhulp</h3>
-                            <div class="company"> Armonea Heiberg | Beerse</div>
-                        </div>
-                        <div class="period">Januari 2017 - April 2017</div>
-                    </div>
-                    <ul class="job-tasks">
-                        <li>Regelmatige dienst, 20 uur per week</li>
-                        <li>Verantwoordelijk voor diverse taken zoals afwas en serveren</li>
                     </ul>
                 </article>
             </section>
