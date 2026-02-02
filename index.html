@@ -3,7 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Wesley Daelmans - IT Network & Infrastructure Professional gespecialiseerd in netwerkbeheer, cybersecurity en IT-infrastructuur in Antwerpen">
+    <meta name="keywords" content="IT, Netwerkbeheerder, Cybersecurity, Infrastructure, Antwerpen, MikroTik, Observium">
+    <meta name="author" content="Wesley Daelmans">    
     <title>Wesley Daelmans - IT Network & Infrastructure Professional</title>
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90' font-family='monospace' font-weight='bold' fill='%2364ffda'>W</text></svg>">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=IBM+Plex+Sans:wght@300;400;600&display=swap" rel="stylesheet">
@@ -47,6 +53,25 @@
             background-size: 50px 50px;
             pointer-events: none;
             z-index: -1;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--primary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-dim);
+            border-radius: 6px;
+            border: 2px solid var(--primary);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent);
         }
 
         .container {
@@ -113,11 +138,28 @@
             gap: 8px;
             color: var(--text-dim);
             text-decoration: none;
-            transition: color 0.3s;
+            transition: all 0.3s ease;
+            position: relative;
         }
 
         .contact-item:hover {
             color: var(--accent);
+            transform: translateY(-2px)
+        }
+
+        .contact-item::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .contact-item:hover::after {
+            width: 100%;
         }
 
         /* Profile Section */
@@ -173,13 +215,15 @@
             border-left: 3px solid var(--accent);
             padding: 15px 20px;
             border-radius: 2px;
-            transition: transform 0.3s, border-color 0.3s;
+            transition: all 0.3s ease;
             font-size: 0.95rem;
         }
 
         .competency-item:hover {
             transform: translateX(5px);
             border-left-color: var(--accent);
+            background: var(--secondary);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
 
         .competency-item::before {
@@ -201,12 +245,27 @@
             padding: 35px;
             margin-bottom: 30px;
             position: relative;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: all 0.3s ease;
+        }
+
+        .job::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3px;
+            height: 0;
+            background: var(--accent);
+            transition: height 0.3s ease;
         }
 
         .job:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .job:hover::before {
+            height: 100%;
         }
 
         .job-header {
@@ -237,6 +296,7 @@
             color: var(--text-dim);
             font-size: 0.9rem;
             font-family: 'JetBrains Mono', monospace;
+            white-space: nowrap;
         }
 
         .job-tasks {
@@ -270,6 +330,13 @@
             padding: 20px 25px;
             margin-bottom: 15px;
             border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .education-item:hover {
+            background: var(--secondary);
+            border-left-color: var(--accent);
+            transform: translateX(5px);
         }
 
         .degree {
@@ -305,6 +372,12 @@
             border: 1px solid var(--border);
             border-radius: 4px;
             padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
 
         .info-title {
@@ -375,7 +448,7 @@
             }
         }
 
-        /* Responsive */
+        /* Responsive Design */
         @media (max-width: 768px) {
             h1 {
                 font-size: 2.5rem;
@@ -396,6 +469,77 @@
             header {
                 padding: 50px 0 40px;
             }
+            
+            .contact-info {
+                gap: 15px;
+            }
+
+            .period {
+                white-space: normal;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .competencies-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+
+            body::before {
+                display: none;
+            }
+
+            .job, .profile, .info-card, .education-item, .competency-item {
+                break-inside: avoid;
+                page-break-inside: avoid;
+                box-shadow: none !important;
+                border-color: #ccc !important;
+            }
+
+            .contact-item::after {
+                display: none;
+            }
+
+            a {
+                color: black;
+                text-decoration: underline;
+            }
+        }
+
+        /* Accessibility improvements */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Focus styles for keyboard navigation */
+        a:focus,
+        .competency-item:focus,
+        .job:focus,
+        .education-item:focus,
+        .info-card:focus {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
         }
 
         /* Scroll reveal on load */
@@ -415,19 +559,19 @@
                     <div class="subtitle">IT Network & Infrastructure Professional</div>
                     
                     <div class="contact-info">
-                        <a href="mailto:wesley.daelmans@hotmail.com" class="contact-item">
+                        <a href="mailto:wesley.daelmans@hotmail.com" class="contact-item" aria-label="Email">
                             <span>📧</span>
                             <span>wesley.daelmans@hotmail.com</span>
                         </a>
-                        <a href="tel:+31497919965" class="contact-item">
+                        <a href="tel:+31497919965" class="contact-item" aria-label="Telefoon">
                             <span>📱</span>
-                            <span>+31 4 97919965</span>
+                            <span>+32 497 91 99 65</span>
                         </a>
                         <div class="contact-item">
                             <span>📍</span>
                             <span>Antwerpen, België</span>
                         </div>
-                        <a href="https://linkedin.com/in/wesley-daelmans-79a02b258" target="_blank" class="contact-item">
+                        <a href="https://linkedin.com/in/wesley-daelmans-79a00a255" target="_blank" rel="noopener noreferrer" class="contact-item" aria-label="LinkedIn profiel">
                             <span>🔗</span>
                             <span>LinkedIn</span>
                         </a>
@@ -440,7 +584,7 @@
             <section class="profile">
                 <h2 class="section-title">Profiel</h2>
                 <p>
-                    Gedreven IT-professional met uitgebreide ervaring in netwerkbeheer, cybersecurity en IT-infrastructuur. 
+                    Gedreven IT-professional met uitgebreide ervaring in netwerkbeheer. 
                     Gespecialiseerd in het configureren en onderhouden van complexe netwerkomgevingen, waaronder switches, routers, 
                     firewalls en storage servers. Proven track record in het oplossen van complexe technische problemen en het 
                     optimaliseren van netwerk- en systeem performance. Analytisch sterk met hands-on mentaliteit en proactieve 
@@ -455,7 +599,7 @@
                     <div class="competency-item">IT-infrastructuur Troubleshooting</div>
                     <div class="competency-item">Switches, Routers & Firewalls</div>
                     <div class="competency-item">Print Servers & Netwerkapparatuur</div>
-                    <div class="competency-item">Storage Servers (Datrium)</div>
+                    <div class="competency-item">Monitoring (Observium)</div>
                     <div class="competency-item">Analytisch Probleemoplossend Vermogen</div>
                     <div class="competency-item">LAN/WAN & UPS Management</div>
                     <div class="competency-item">Klantgericht & Teamgericht Werken</div>
@@ -467,65 +611,63 @@
             <section class="experience">
                 <h2 class="section-title">Werkervaring</h2>
                 
-                <div class="job">
+                <article class="job">
                     <div class="job-header">
                         <div>
-                            <div class="job-title">Netwerkbeheerder</div>
+                            <h3 class="job-title">Netwerkbeheerder</h3>
                             <div class="company">ASCOO ITS | Antwerpen</div>
                         </div>
                         <div class="period">November 2025 - Februari 2026</div>
                     </div>
                     <ul class="job-tasks">
-                        <li>Configuratie en onderhoud van diverse netwerkapparatuur, waaronder switches en routers</li>
-                        <li>Installatie en configuratie van Datrium storage servers voor dataopslag en -beheer</li>
+                        <li>Configuratie en onderhoud van diverse netwerkapparatuur, waaronder switches en accesspoints (mikrotik)</li>
+                        <li>Installatie en configuratie van monitoring server met Observium</li>
                         <li>Troubleshooting en oplossen van complexe netwerk- en infrastructuurproblemen</li>
                         <li>Verantwoordelijk voor dagelijks beheer van IT-infrastructuur ter ondersteuning van bedrijfsvoering</li>
                     </ul>
-                </div>
+                </article>
 
-                <div class="job">
+                <article class="job">
                     <div class="job-header">
                         <div>
-                            <div class="job-title">Helpdesk Medewerker Tomorrowland</div>
+                            <h3 class="job-title">Jobstudent Magazijnier Tomorrowland</h3>
                             <div class="company">ViKa Solutions | Boom</div>
                         </div>
                         <div class="period">Juni 2023 - Augustus 2023 & Juni 2024 - Augustus 2024</div>
                     </div>
                     <ul class="job-tasks">
-                        <li>First-line IT support tijdens grootschalig evenement voor diverse technische vraagstukken</li>
-                        <li>Configuratie en beheer van netwerkapparatuur waaronder switches, routers en printers</li>
-                        <li>Installatie en onderhoud van materiaal op festivallocatie onder tijdsdruk</li>
-                        <li>Probleemoplossing voor diverse hard- en softwarekwesties tijdens hoge-druk omgeving</li>
+                        <li>Goederen uitladen, ordenen en klaarmaken voor Festival</li>
                     </ul>
-                </div>
+                </article>
 
-                <div class="job">
+                <article class="job">
                     <div class="job-header">
                         <div>
-                            <div class="job-title">Stage Netwerkbeheerder</div>
+                            <h3 class="job-title">Stage Netwerkbeheerder</h3>
                             <div class="company">AP Hogeschool | Antwerpen</div>
                         </div>
                         <div class="period">Februari 2023 - Juni 2023</div>
                     </div>
                     <ul class="job-tasks">
-                        <li>Ondersteuning IT-infrastructuur inclusief configuratie van printers en netwerkdiensten</li>
-                        <li>Installatie en troubleshooting van UPS-systemen voor netwerkbeveiliging</li>
+                        <li>Ondersteuning IT-infrastructuur inclusief managen van printers en Microsoft Endpoint Configuration Manager</li>
+                        <li>Installatie van UPS-systemen</li>
                         <li>Assistentie bij diverse IT-projecten en dagelijkse ondersteuning van de IT-afdeling</li>
                     </ul>
-                </div>
+                </article>
 
-                <div class="job">
+                <article class="job">
                     <div class="job-header">
                         <div>
-                            <div class="job-title">Keukenhulp / Servicemedewerker</div>
-                            <div class="company">Café Trappisten & AZ Voorkempen | Westmalle & Malle</div>
+                            <h3 class="job-title">Stage Keukenhulp</h3>
+                            <div class="company"> Armonea Heiberg | Beerse</div>
                         </div>
-                        <div class="period">2017 - 2020</div>
+                        <div class="period">Januari 2017 - April 2017</div>
                     </div>
                     <ul class="job-tasks">
-                        <li>Diverse stages en werkervaring in horeca en zorg ter ontwikkeling van klantgerichtheid, teamwork en hands-on werkmentaliteit</li>
+                        <li>Regelmatige dienst, 20 uur per week</li>
+                        <li>Verantwoordelijk voor diverse taken zoals afwas en serveren</li>
                     </ul>
-                </div>
+                </article>
             </section>
 
             <section class="education">
@@ -534,7 +676,7 @@
                 <div class="education-item">
                     <div class="degree">Cybersecurity Professional</div>
                     <div class="school">HoWest Hogeschool | Brugge</div>
-                    <div class="edu-period">2023</div>
+                    <div class="edu-period">2023 - 2024</div>
                 </div>
 
                 <div class="education-item">
