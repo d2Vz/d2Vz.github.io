@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wesley Daelmans - IT Network & Infrastructure Professional</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=IBM+Plex+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0a192f;
+            --secondary: #112240;
+            --accent: #64ffda;
+            --accent-dim: #4db8a0;
+            --text: #ccd6f6;
+            --text-dim: #8892b0;
+            --surface: #172a45;
+            --border: rgba(100, 255, 218, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'IBM Plex Sans', sans-serif;
+            background: var(--primary);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Background grid effect */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(100, 255, 218, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(100, 255, 218, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            padding: 80px 0 60px;
+            position: relative;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: flex-start;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .header-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--accent);
+            font-size: 0.9rem;
+            font-weight: 400;
+            margin-bottom: 10px;
+            letter-spacing: 0.05em;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 10px;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            color: var(--text-dim);
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-top: 25px;
+            font-size: 0.95rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-dim);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-item:hover {
+            color: var(--accent);
+        }
+
+        /* Profile Section */
+        .profile {
+            background: var(--secondary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 40px;
+            margin-bottom: 60px;
+            position: relative;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        .profile::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: 40px;
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 20px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .section-title::before {
+            content: '// ';
+            color: var(--accent);
+        }
+
+        /* Competencies Grid */
+        .competencies {
+            margin-bottom: 60px;
+            animation: fadeInUp 0.8s ease-out 0.4s backwards;
+        }
+
+        .competencies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .competency-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--accent);
+            padding: 15px 20px;
+            border-radius: 2px;
+            transition: transform 0.3s, border-color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        .competency-item:hover {
+            transform: translateX(5px);
+            border-left-color: var(--accent);
+        }
+
+        .competency-item::before {
+            content: '▹ ';
+            color: var(--accent);
+            margin-right: 10px;
+        }
+
+        /* Experience Section */
+        .experience {
+            margin-bottom: 60px;
+            animation: fadeInUp 0.8s ease-out 0.6s backwards;
+        }
+
+        .job {
+            background: var(--secondary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 35px;
+            margin-bottom: 30px;
+            position: relative;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .job:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .job-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .job-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--accent);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .company {
+            color: var(--text);
+            font-size: 1.1rem;
+            margin-top: 5px;
+        }
+
+        .period {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .job-tasks {
+            list-style: none;
+        }
+
+        .job-tasks li {
+            padding-left: 25px;
+            margin-bottom: 12px;
+            position: relative;
+            color: var(--text-dim);
+        }
+
+        .job-tasks li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+
+        /* Education Section */
+        .education {
+            margin-bottom: 60px;
+            animation: fadeInUp 0.8s ease-out 0.8s backwards;
+        }
+
+        .education-item {
+            background: var(--surface);
+            border-left: 3px solid var(--accent-dim);
+            padding: 20px 25px;
+            margin-bottom: 15px;
+            border-radius: 2px;
+        }
+
+        .degree {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 5px;
+        }
+
+        .school {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+        }
+
+        .edu-period {
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-family: 'JetBrains Mono', monospace;
+            margin-top: 5px;
+        }
+
+        /* Additional Info */
+        .additional-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+            animation: fadeInUp 0.8s ease-out 1s backwards;
+        }
+
+        .info-card {
+            background: var(--secondary);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 30px;
+        }
+
+        .info-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 20px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .info-content {
+            list-style: none;
+        }
+
+        .info-content li {
+            color: var(--text-dim);
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .info-content li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border);
+            animation: fadeIn 1s ease-out 1.2s backwards;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .job, .profile, .info-card {
+                padding: 25px;
+            }
+
+            header {
+                padding: 50px 0 40px;
+            }
+        }
+
+        /* Scroll reveal on load */
+        .reveal {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="header-text">
+                    <div class="mono">$ whoami</div>
+                    <h1>Wesley Daelmans</h1>
+                    <div class="subtitle">IT Network & Infrastructure Professional</div>
+                    
+                    <div class="contact-info">
+                        <a href="mailto:wesley.daelmans@hotmail.com" class="contact-item">
+                            <span>📧</span>
+                            <span>wesley.daelmans@hotmail.com</span>
+                        </a>
+                        <a href="tel:+31497919965" class="contact-item">
+                            <span>📱</span>
+                            <span>+31 4 97919965</span>
+                        </a>
+                        <div class="contact-item">
+                            <span>📍</span>
+                            <span>Antwerpen, België</span>
+                        </div>
+                        <a href="https://linkedin.com/in/wesley-daelmans-79a02b258" target="_blank" class="contact-item">
+                            <span>🔗</span>
+                            <span>LinkedIn</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section class="profile">
+                <h2 class="section-title">Profiel</h2>
+                <p>
+                    Gedreven IT-professional met uitgebreide ervaring in netwerkbeheer, cybersecurity en IT-infrastructuur. 
+                    Gespecialiseerd in het configureren en onderhouden van complexe netwerkomgevingen, waaronder switches, routers, 
+                    firewalls en storage servers. Proven track record in het oplossen van complexe technische problemen en het 
+                    optimaliseren van netwerk- en systeem performance. Analytisch sterk met hands-on mentaliteit en proactieve 
+                    aanpak om bij te dragen aan IT-teams en infrastructuurprojecten.
+                </p>
+            </section>
+
+            <section class="competencies">
+                <h2 class="section-title">Kerncompetenties</h2>
+                <div class="competencies-grid">
+                    <div class="competency-item">Netwerkbeheer & Configuratie</div>
+                    <div class="competency-item">IT-infrastructuur Troubleshooting</div>
+                    <div class="competency-item">Switches, Routers & Firewalls</div>
+                    <div class="competency-item">Print Servers & Netwerkapparatuur</div>
+                    <div class="competency-item">Storage Servers (Datrium)</div>
+                    <div class="competency-item">Analytisch Probleemoplossend Vermogen</div>
+                    <div class="competency-item">LAN/WAN & UPS Management</div>
+                    <div class="competency-item">Klantgericht & Teamgericht Werken</div>
+                    <div class="competency-item">Cybersecurity Fundamentals</div>
+                    <div class="competency-item">Documentatie & Rapportage</div>
+                </div>
+            </section>
+
+            <section class="experience">
+                <h2 class="section-title">Werkervaring</h2>
+                
+                <div class="job">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Netwerkbeheerder</div>
+                            <div class="company">ASCOO ITS | Antwerpen</div>
+                        </div>
+                        <div class="period">November 2025 - Februari 2026</div>
+                    </div>
+                    <ul class="job-tasks">
+                        <li>Configuratie en onderhoud van diverse netwerkapparatuur, waaronder switches en routers</li>
+                        <li>Installatie en configuratie van Datrium storage servers voor dataopslag en -beheer</li>
+                        <li>Troubleshooting en oplossen van complexe netwerk- en infrastructuurproblemen</li>
+                        <li>Verantwoordelijk voor dagelijks beheer van IT-infrastructuur ter ondersteuning van bedrijfsvoering</li>
+                    </ul>
+                </div>
+
+                <div class="job">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Helpdesk Medewerker Tomorrowland</div>
+                            <div class="company">ViKa Solutions | Boom</div>
+                        </div>
+                        <div class="period">Juni 2023 - Augustus 2023 & Juni 2024 - Augustus 2024</div>
+                    </div>
+                    <ul class="job-tasks">
+                        <li>First-line IT support tijdens grootschalig evenement voor diverse technische vraagstukken</li>
+                        <li>Configuratie en beheer van netwerkapparatuur waaronder switches, routers en printers</li>
+                        <li>Installatie en onderhoud van materiaal op festivallocatie onder tijdsdruk</li>
+                        <li>Probleemoplossing voor diverse hard- en softwarekwesties tijdens hoge-druk omgeving</li>
+                    </ul>
+                </div>
+
+                <div class="job">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Stage Netwerkbeheerder</div>
+                            <div class="company">AP Hogeschool | Antwerpen</div>
+                        </div>
+                        <div class="period">Februari 2023 - Juni 2023</div>
+                    </div>
+                    <ul class="job-tasks">
+                        <li>Ondersteuning IT-infrastructuur inclusief configuratie van printers en netwerkdiensten</li>
+                        <li>Installatie en troubleshooting van UPS-systemen voor netwerkbeveiliging</li>
+                        <li>Assistentie bij diverse IT-projecten en dagelijkse ondersteuning van de IT-afdeling</li>
+                    </ul>
+                </div>
+
+                <div class="job">
+                    <div class="job-header">
+                        <div>
+                            <div class="job-title">Keukenhulp / Servicemedewerker</div>
+                            <div class="company">Café Trappisten & AZ Voorkempen | Westmalle & Malle</div>
+                        </div>
+                        <div class="period">2017 - 2020</div>
+                    </div>
+                    <ul class="job-tasks">
+                        <li>Diverse stages en werkervaring in horeca en zorg ter ontwikkeling van klantgerichtheid, teamwork en hands-on werkmentaliteit</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="education">
+                <h2 class="section-title">Opleiding</h2>
+                
+                <div class="education-item">
+                    <div class="degree">Cybersecurity Professional</div>
+                    <div class="school">HoWest Hogeschool | Brugge</div>
+                    <div class="edu-period">2023</div>
+                </div>
+
+                <div class="education-item">
+                    <div class="degree">Systeem- en Netwerkbeheerder</div>
+                    <div class="school">AP Hogeschool | Antwerpen</div>
+                    <div class="edu-period">2021 - 2023</div>
+                </div>
+
+                <div class="education-item">
+                    <div class="degree">Zevende Jaar - Veiligheid</div>
+                    <div class="school">Heilig Hart | Turnhout</div>
+                    <div class="edu-period">2019 - 2020 | Secundair Onderwijs</div>
+                </div>
+
+                <div class="education-item">
+                    <div class="degree">Beroeps Secundair Onderwijs - Organisatiehulp</div>
+                    <div class="school">Mariagaarde Instituut | Westmalle</div>
+                    <div class="edu-period">2016 - 2019</div>
+                </div>
+
+                <div class="education-item">
+                    <div class="degree">Technische Secundair Onderwijs - Sociaal Technische Wetenschappen</div>
+                    <div class="school">Mariagaarde Instituut | Westmalle</div>
+                    <div class="edu-period">2012 - 2015</div>
+                </div>
+            </section>
+
+            <section class="additional-info">
+                <div class="info-card">
+                    <h3 class="info-title">Talen</h3>
+                    <ul class="info-content">
+                        <li>Nederlands - Moedertaal</li>
+                        <li>Engels - Goed</li>
+                    </ul>
+                </div>
+
+                <div class="info-card">
+                    <h3 class="info-title">Persoonlijke eigenschappen</h3>
+                    <ul class="info-content">
+                        <li>Analytisch en probleemoplossend denkvermogen</li>
+                        <li>Hands-on mentaliteit met oog voor detail</li>
+                        <li>Leergierig en gedreven om IT-kennis uit te breiden</li>
+                        <li>Teamspeler met goede communicatieve vaardigheden</li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Geboortedatum: 08-03-2001</p>
+            <p style="margin-top: 10px; font-family: 'JetBrains Mono', monospace; color: var(--accent);">
+                © 2026 Wesley Daelmans
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
